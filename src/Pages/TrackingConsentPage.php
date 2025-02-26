@@ -66,6 +66,18 @@ class TrackingConsentPage extends AbstractPageSettings
                             ->columnSpanFull()
                             ->required(),
 
+                        Forms\Components\TextInput::make('cookieconsent.preferences_title')
+                            ->label('Titolo della pagina delle preferenze')
+                            ->default('Questo sito utilizza i cookies')
+                            ->columnSpanFull()
+                            ->required(),
+
+                        Forms\Components\TextArea::make('cookieconsent.preferences_description')
+                            ->label('Messaggio della pagina delle preferenze')
+                            ->default('Questo sito utilizza i cookies per garantire la migliore esperienza di navigazione.')
+                            ->columnSpanFull()
+                            ->required(),
+
                         Forms\Components\Select::make('cookieconsent.layout')
                             ->label('Layout')
                             ->live(true)

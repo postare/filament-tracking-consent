@@ -1,6 +1,6 @@
 {
     "name": "postare/filament-tracking-consent",
-    "description": "This is my package filament-tracking-consent",
+    "description": "A FilamentPHP plugin to easily add tracking codes (e.g., Google Analytics) to the frontend, manage related cookies, and display a customizable GDPR consent banner.",
     "keywords": [
         "postare",
         "laravel",
@@ -32,9 +32,6 @@
         "pestphp/pest": "^2.1",
         "pestphp/pest-plugin-arch": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
-        "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.0",
         "spatie/laravel-ray": "^1.26"
     },
     "autoload": {
@@ -50,7 +47,6 @@
     },
     "scripts": {
         "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
-        "analyse": "vendor/bin/phpstan analyse",
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
         "format": "vendor/bin/pint"

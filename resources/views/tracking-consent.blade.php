@@ -92,8 +92,8 @@
                             closeIconLabel: 'Chiudi modale',
                             sections: [
                                 {
-                                    title: 'Qualcuno ha detto ... cookie?',
-                                    description: 'Ne voglio uno!'
+                                    title: @js($cookieconsent['preferences_title']??null),
+                                    description: @js($cookieconsent['preferences_description']??null)
                                 },
                                 {
                                     title: 'Cookie strettamente necessari',
