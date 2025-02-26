@@ -1,4 +1,4 @@
-<trackandcookie>
+<trackingConsent>
     {{-- Quello che metti qui dentro viene renderizzato nella head --}}
     {{-- Codici di tracking per la head --}}
 
@@ -20,23 +20,23 @@
         @if ($track['position'] == 'head')
             {!! $tracking_code !!}
         @elseif ($track['position'] == 'body')
-            @push('trackandcookie-body-start')
+            @push('tracking-consent-body-start')
                 {!! $tracking_code !!}
             @endpush
         @elseif ($track['position'] == 'footer')
-            @push('trackandcookie-body-end')
+            @push('tracking-consent-body-end')
                 {!! $tracking_code !!}
             @endpush
         @endif
     @endforeach
-</trackandcookie>
+</trackingConsent>
 
-@push('trackandcookie-preferences-btn')
+@push('tracking-consent-preferences-btn')
     &middot;
     <button class="footer-link" type="button" data-cc="show-preferencesModal">Preferenze Cookies</button>
 @endpush
 
-@push('trackandcookie-body-end')
+@push('tracking-consent-body-end')
     {{--
         All config. options available here:
         https://cookieconsent.orestbida.com/reference/configuration-reference.html

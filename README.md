@@ -17,24 +17,12 @@ You can install the package via composer:
 composer require postare/filament-tracking-consent
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="filament-tracking-consent-migrations"
-php artisan migrate
-```
-
 You can publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="filament-tracking-consent-config"
 ```
 
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="filament-tracking-consent-views"
-```
 
 This is the contents of the published config file:
 
@@ -44,10 +32,24 @@ return [
 ```
 
 ## Usage
+Nel file di layout, prima della chiusura del tag head inserisci il componente
+```
+<x-filament-tracking-consent::tracking-consent />
+```
 
-```php
-$filamentTrackingConsent = new Postare\FilamentTrackingConsent();
-echo $filamentTrackingConsent->echoPhrase('Hello, Postare!');
+Subito dopo il tag body inserisci lo stack
+```
+@stack('tracking-consent-body-start')
+```
+
+Subito dopo l'apertura del tag body inserisci lo stack
+```
+@stack('tracking-consent-body-end')
+```
+
+Nel tuo footer o in qualsiasi altro punto tu voglia far apparire il pulsante di gestione dei cookies aggiungi
+```
+@stack('tracking-consent-preferences-btn')
 ```
 
 ## Testing
