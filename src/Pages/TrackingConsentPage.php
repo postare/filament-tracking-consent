@@ -8,9 +8,9 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
+use Illuminate\Contracts\Support\Htmlable;
 use Postare\DbConfig\AbstractPageSettings;
 use Riodwanto\FilamentAceEditor\AceEditor;
-use Illuminate\Contracts\Support\Htmlable;
 
 class TrackingConsentPage extends AbstractPageSettings
 {
@@ -35,7 +35,6 @@ class TrackingConsentPage extends AbstractPageSettings
     {
         return config('filament-tracking-consent.settings-page.navigation-group', null);
     }
-
 
     protected ?string $subheading = '';
 
