@@ -76,6 +76,9 @@ class FilamentTrackingConsentServiceProvider extends PackageServiceProvider
         // Icon Registration
         FilamentIcon::register($this->getIcons());
 
+        // Registra il namespace dei componenti Blade
+        \Illuminate\Support\Facades\Blade::componentNamespace('Postare\\FilamentTrackingConsent\\View\\Components', 'filament-tracking-consent');
+
         // Handle Stubs
         if (app()->runningInConsole()) {
             foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
@@ -111,9 +114,7 @@ class FilamentTrackingConsentServiceProvider extends PackageServiceProvider
      */
     protected function getCommands(): array
     {
-        return [
-            FilamentTrackingConsentCommand::class,
-        ];
+        return [];
     }
 
     /**
