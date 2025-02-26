@@ -4,7 +4,6 @@ namespace Postare\FilamentTrackingConsent;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
-use Postare\FilamentTrackingConsent\View\Components\TrackingConsent;
 
 class FilamentTrackingConsentPlugin implements Plugin
 {

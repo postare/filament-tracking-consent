@@ -8,7 +8,6 @@ use Illuminate\View\Component;
 
 class TrackingConsent extends Component
 {
-
     public $categories;
 
     public $cookiesByCategory;
@@ -28,8 +27,6 @@ class TrackingConsent extends Component
 
         $this->cookieconsent = db_config('tracking_consent.cookieconsent');
 
-
-
         $this->categories = $this->trackAndCookies->flatMap(function ($item) {
             return collect($item['cookies'])->map(function ($cookie) use ($item) {
                 return ['category' => $item['category'], 'cookie' => $cookie];
@@ -44,7 +41,7 @@ class TrackingConsent extends Component
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): View|Closure|string|null
+    public function render(): View | Closure | string | null
     {
         // se vuoto, non fare nulla
         if ($this->cookieconsent === null) {
