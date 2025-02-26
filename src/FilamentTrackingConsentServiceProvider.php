@@ -10,11 +10,11 @@ use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
 use Livewire\Features\SupportTesting\Testable;
+use Postare\FilamentTrackingConsent\Commands\FilamentTrackingConsentCommand;
+use Postare\FilamentTrackingConsent\Testing\TestsFilamentTrackingConsent;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Postare\FilamentTrackingConsent\Commands\FilamentTrackingConsentCommand;
-use Postare\FilamentTrackingConsent\Testing\TestsFilamentTrackingConsent;
 
 class FilamentTrackingConsentServiceProvider extends PackageServiceProvider
 {
