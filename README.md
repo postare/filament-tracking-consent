@@ -1,80 +1,85 @@
-# This is my package filament-tracking-consent
+# Filament Tracking Consent
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/postare/filament-tracking-consent.svg?style=flat-square)](https://packagist.org/packages/postare/filament-tracking-consent)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/postare/filament-tracking-consent/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/postare/filament-tracking-consent/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/postare/filament-tracking-consent/fix-php-code-styling.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/postare/filament-tracking-consent/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/postare/filament-tracking-consent.svg?style=flat-square)](https://packagist.org/packages/postare/filament-tracking-consent)  
 [![Total Downloads](https://img.shields.io/packagist/dt/postare/filament-tracking-consent.svg?style=flat-square)](https://packagist.org/packages/postare/filament-tracking-consent)
 
+A Filament plugin that allows you to easily integrate tracking codes (e.g., Google Analytics) into your frontend, manage related cookies, and display a fully customizable GDPR consent banner.
 
+## Prerequisites
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+This package requires the [DB Config](https://github.com/postare/db-config) plugin. Ensure you have it installed before proceeding.
 
 ## Installation
 
-You can install the package via composer:
+Install the package via Composer:
 
 ```bash
 composer require postare/filament-tracking-consent
 ```
 
-You can publish the config file with:
+Publish the configuration file:
 
 ```bash
 php artisan vendor:publish --tag="filament-tracking-consent-config"
 ```
 
-
-This is the contents of the published config file:
+The default configuration file looks like this:
 
 ```php
 return [
 ];
 ```
 
-## Usage
-Nel file di layout, prima della chiusura del tag head inserisci il componente
+## Registering the Plugin
+
+To enable the plugin, add it to the `plugins` array inside your Filament panel provider, typically located in `app/Providers/Filament/AdminPanelProvider.php`:
+
+```php
+->plugins([
+    ...
+    \Postare\FilamentTrackingConsent\FilamentTrackingConsentPlugin::make(),
+])
 ```
+
+## Usage
+
+### Adding the Consent Banner
+
+Include the tracking consent component in your layout file, just before the closing `<head>` tag:
+
+```blade
 <x-filament-tracking-consent::tracking-consent />
 ```
 
-Subito dopo il tag body inserisci lo stack
-```
-@stack('tracking-consent-body-start')
-```
+### Injecting Tracking Code
 
-Subito dopo l'apertura del tag body inserisci lo stack
-```
-@stack('tracking-consent-body-end')
-```
+To insert tracking scripts dynamically, add the following stack placeholders in your layout:
 
-Nel tuo footer o in qualsiasi altro punto tu voglia far apparire il pulsante di gestione dei cookies aggiungi
-```
+-   **Immediately after opening `<body>`**:
+
+    ```blade
+    @stack('tracking-consent-body-start')
+    ```
+
+-   **Just before closing `</body>`**:
+
+    ```blade
+    @stack('tracking-consent-body-end')
+    ```
+
+### Cookie Preferences Button
+
+To allow users to manage their consent preferences, add this stack wherever you want the preferences button to appear (e.g., in the footer):
+
+```blade
 @stack('tracking-consent-preferences-btn')
 ```
 
-## Testing
-
-```bash
-composer test
-```
-
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
 ## Credits
 
-- [Francesco Apruzzese](https://github.com/postare)
-- [All Contributors](../../contributors)
+-   [Francesco Apruzzese](https://github.com/postare)
+-   [All Contributors](../../contributors)
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+This package is open-source software licensed under the [MIT License](LICENSE.md).
