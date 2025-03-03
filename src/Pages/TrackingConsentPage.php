@@ -11,7 +11,7 @@ use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Illuminate\Contracts\Support\Htmlable;
 use Postare\DbConfig\AbstractPageSettings;
-use Riodwanto\FilamentAceEditor\AceEditor;
+use Dotswan\FilamentCodeEditor\Fields\CodeEditor;
 
 class TrackingConsentPage extends AbstractPageSettings
 {
@@ -171,7 +171,7 @@ class TrackingConsentPage extends AbstractPageSettings
                             ])
                             ->default('analytics')
                             ->required(),
-                        AceEditor::make('code')
+                            CodeEditor::make('code')
                             ->label(__('filament-tracking-consent::tracking-consent.code'))
                             ->columnSpanFull()
                             ->required(),
