@@ -2,7 +2,6 @@
 
 namespace Postare\FilamentTrackingConsent\Pages;
 
-use Wiebenieuwenhuis\FilamentCodeEditor\Components\CodeEditor;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Repeater;
@@ -12,6 +11,7 @@ use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Illuminate\Contracts\Support\Htmlable;
 use Postare\DbConfig\AbstractPageSettings;
+use Wiebenieuwenhuis\FilamentCodeEditor\Components\CodeEditor;
 
 class TrackingConsentPage extends AbstractPageSettings
 {
