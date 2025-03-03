@@ -2,7 +2,7 @@
 
 namespace Postare\FilamentTrackingConsent\Pages;
 
-use Dotswan\FilamentCodeEditor\Fields\CodeEditor;
+use Wiebenieuwenhuis\FilamentCodeEditor\Components\CodeEditor;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Repeater;
