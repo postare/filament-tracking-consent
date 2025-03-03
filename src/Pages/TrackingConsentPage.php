@@ -2,7 +2,6 @@
 
 namespace Postare\FilamentTrackingConsent\Pages;
 
-use Dotswan\FilamentCodeEditor\Fields\CodeEditor;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Repeater;
@@ -171,7 +170,7 @@ class TrackingConsentPage extends AbstractPageSettings
                             ])
                             ->default('analytics')
                             ->required(),
-                        CodeEditor::make('code')
+                        Forms\Components\Textarea::make('code')
                             ->label(__('filament-tracking-consent::tracking-consent.code'))
                             ->columnSpanFull()
                             ->required(),
