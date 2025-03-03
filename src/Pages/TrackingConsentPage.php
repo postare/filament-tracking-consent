@@ -67,7 +67,7 @@ class TrackingConsentPage extends AbstractPageSettings
                                             ->columnSpanFull()
                                             ->required(),
 
-                                        Forms\Components\TextArea::make('cookieconsent.description')
+                                        Forms\Components\Textarea::make('cookieconsent.description')
                                             ->label(__('filament-tracking-consent::tracking-consent.banner_message'))
                                             ->default(__('filament-tracking-consent::tracking-consent.banner_message'))
                                             ->columnSpanFull()
@@ -135,7 +135,7 @@ class TrackingConsentPage extends AbstractPageSettings
                                             ->columnSpanFull()
                                             ->required(),
 
-                                        Forms\Components\TextArea::make('cookieconsent.preferences_description')
+                                        Forms\Components\Textarea::make('cookieconsent.preferences_description')
                                             ->label(__('filament-tracking-consent::tracking-consent.preferences_message'))
                                             ->default(__('filament-tracking-consent::tracking-consent.preferences_message'))
                                             ->columnSpanFull()
