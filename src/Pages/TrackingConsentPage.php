@@ -2,6 +2,7 @@
 
 namespace Postare\FilamentTrackingConsent\Pages;
 
+use Dotswan\FilamentCodeEditor\Fields\CodeEditor;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Repeater;
@@ -11,7 +12,6 @@ use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Illuminate\Contracts\Support\Htmlable;
 use Postare\DbConfig\AbstractPageSettings;
-use Dotswan\FilamentCodeEditor\Fields\CodeEditor;
 
 class TrackingConsentPage extends AbstractPageSettings
 {
@@ -171,7 +171,7 @@ class TrackingConsentPage extends AbstractPageSettings
                             ])
                             ->default('analytics')
                             ->required(),
-                            CodeEditor::make('code')
+                        CodeEditor::make('code')
                             ->label(__('filament-tracking-consent::tracking-consent.code'))
                             ->columnSpanFull()
                             ->required(),
