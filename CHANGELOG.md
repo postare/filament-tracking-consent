@@ -2,6 +2,10 @@
 
 All notable changes to `filament-tracking-consent` will be documented in this file.
 
+## v0.1.2 - 2025-03-03
+
+**Full Changelog**: https://github.com/postare/filament-tracking-consent/compare/v0.1.0...v0.1.2
+
 ## v0.1.1 - 2025-03-03
 
 **Full Changelog**: https://github.com/postare/filament-tracking-consent/compare/v0.1.0...v0.1.1
