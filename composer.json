@@ -24,7 +24,7 @@
         "dotswan/filament-code-editor": "^1.1",
         "filament/filament": "^3.0",
         "postare/db-config": "^3.02",
-        "spatie/laravel-package-tools": "^1.15.0",
+        "spatie/laravel-package-tools": "^1.15.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
