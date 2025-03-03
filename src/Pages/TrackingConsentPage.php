@@ -6,6 +6,7 @@ use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Tabs;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Illuminate\Contracts\Support\Htmlable;
@@ -50,91 +51,101 @@ class TrackingConsentPage extends AbstractPageSettings
         return $form
             ->schema([
 
-                Section::make('Aspetto banner cookies')
+                Section::make(__('filament-tracking-consent::tracking-consent.banner_title'))
                     ->columns(2)
                     ->schema([
-
-                        Forms\Components\TextInput::make('cookieconsent.title')
-                            ->label('Titolo del banner')
-                            ->default('Questo sito utilizza i cookies')
+                        Tabs::make('Tabs')
                             ->columnSpanFull()
-                            ->required(),
+                            ->contained(false)
+                            ->tabs([
+                                Tabs\Tab::make(__('filament-tracking-consent::tracking-consent.banner_section'))
+                                    ->columns(2)
+                                    ->schema([
+                                        Forms\Components\TextInput::make('cookieconsent.title')
+                                            ->label(__('filament-tracking-consent::tracking-consent.banner_title'))
+                                            ->default(__('filament-tracking-consent::tracking-consent.banner_title'))
+                                            ->columnSpanFull()
+                                            ->required(),
 
-                        Forms\Components\TextArea::make('cookieconsent.description')
-                            ->label('Messaggio del banner')
-                            ->default('Questo sito utilizza i cookies per garantire la migliore esperienza di navigazione.')
-                            ->columnSpanFull()
-                            ->required(),
+                                        Forms\Components\TextArea::make('cookieconsent.description')
+                                            ->label(__('filament-tracking-consent::tracking-consent.banner_message'))
+                                            ->default(__('filament-tracking-consent::tracking-consent.banner_message'))
+                                            ->columnSpanFull()
+                                            ->required(),
+                                        Forms\Components\Select::make('cookieconsent.layout')
+                                            ->label(__('filament-tracking-consent::tracking-consent.layout'))
+                                            ->live(true)
+                                            ->options([
+                                                'box' => 'Box',
+                                                'cloud' => 'Cloud',
+                                                'bar' => 'Bar',
+                                            ])
+                                            ->default('box')
+                                            ->required(),
 
-                        Forms\Components\TextInput::make('cookieconsent.preferences_title')
-                            ->label('Titolo della pagina delle preferenze')
-                            ->default('Questo sito utilizza i cookies')
-                            ->columnSpanFull()
-                            ->required(),
+                                        Forms\Components\Select::make('cookieconsent.layout_variant')
+                                            ->label(__('filament-tracking-consent::tracking-consent.layout_variant'))
+                                            ->options(fn (Get $get) => match ($get('cookieconsent.layout')) {
+                                                'box' => [
+                                                    'wide' => 'Wide',
+                                                    'inline' => 'Inline',
+                                                    '' => 'None',
+                                                ],
+                                                default => [
+                                                    'inline' => 'Inline',
+                                                    '' => 'None',
+                                                ]
+                                            })
+                                            ->default(''),
 
-                        Forms\Components\TextArea::make('cookieconsent.preferences_description')
-                            ->label('Messaggio della pagina delle preferenze')
-                            ->default('Questo sito utilizza i cookies per garantire la migliore esperienza di navigazione.')
-                            ->columnSpanFull()
-                            ->required(),
+                                        Forms\Components\Select::make('cookieconsent.positionX')
+                                            ->label(__('filament-tracking-consent::tracking-consent.position_x'))
+                                            ->options(fn (Get $get) => match ($get('cookieconsent.layout')) {
+                                                'box' => [
+                                                    '' => 'None',
+                                                ],
+                                                default => [
+                                                    'left' => 'Left',
+                                                    'right' => 'Right',
+                                                    'center' => 'Center',
+                                                ]
+                                            })
+                                            ->default('center'),
 
-                        Forms\Components\Select::make('cookieconsent.layout')
-                            ->label('Layout')
-                            ->live(true)
-                            ->options([
-                                'box' => 'Box',
-                                'cloud' => 'Cloud',
-                                'bar' => 'Bar',
-                            ])
-                            ->default('box')
-                            ->required(),
+                                        Forms\Components\Select::make('cookieconsent.positionY')
+                                            ->label(__('filament-tracking-consent::tracking-consent.position_y'))
+                                            ->options(fn (Get $get) => match ($get('cookieconsent.layout')) {
+                                                'bar' => [
+                                                    'top' => 'Top',
+                                                    'bottom' => 'Bottom',
+                                                ],
+                                                default => [
+                                                    'top' => 'Top',
+                                                    'bottom' => 'Bottom',
+                                                    'middle' => 'Middle',
+                                                ]
+                                            })
+                                            ->default('middle'),
+                                    ]),
+                                Tabs\Tab::make(__('filament-tracking-consent::tracking-consent.preferences_section'))
+                                    ->schema([
+                                        Forms\Components\TextInput::make('cookieconsent.preferences_title')
+                                            ->label(__('filament-tracking-consent::tracking-consent.preferences_title'))
+                                            ->default(__('filament-tracking-consent::tracking-consent.preferences_title'))
+                                            ->columnSpanFull()
+                                            ->required(),
 
-                        Forms\Components\Select::make('cookieconsent.layout_variant')
-                            ->label('Variante')
-                            ->options(fn (Get $get) => match ($get('cookieconsent.layout')) {
-                                'box' => [
-                                    'wide' => 'Wide',
-                                    'inline' => 'Inline',
-                                    '' => 'None',
-                                ],
-                                default => [
-                                    'inline' => 'Inline',
-                                    '' => 'None',
-                                ]
-                            })
-                            ->default(''),
+                                        Forms\Components\TextArea::make('cookieconsent.preferences_description')
+                                            ->label(__('filament-tracking-consent::tracking-consent.preferences_message'))
+                                            ->default(__('filament-tracking-consent::tracking-consent.preferences_message'))
+                                            ->columnSpanFull()
+                                            ->required(),
+                                    ]),
+                            ]),
 
-                        Forms\Components\Select::make('cookieconsent.positionX')
-                            ->label('Posizione orizzontale')
-                            ->options(fn (Get $get) => match ($get('cookieconsent.layout')) {
-                                'box' => [
-                                    '' => 'None',
-                                ],
-                                default => [
-                                    'left' => 'Left',
-                                    'right' => 'Right',
-                                    'center' => 'Center',
-                                ]
-                            })
-                            ->default('center'),
-
-                        Forms\Components\Select::make('cookieconsent.positionY')
-                            ->label('Posizione verticale')
-                            ->options(fn (Get $get) => match ($get('cookieconsent.layout')) {
-                                'bar' => [
-                                    'top' => 'Top',
-                                    'bottom' => 'Bottom',
-                                ],
-                                default => [
-                                    'top' => 'Top',
-                                    'bottom' => 'Bottom',
-                                    'middle' => 'Middle',
-                                ]
-                            })
-                            ->default('middle'),
                     ]),
                 Repeater::make('track_and_cookies')
-                    ->label('Codici di tracciamento e relativi Cookies')
+                    ->label(__('filament-tracking-consent::tracking-consent.tracking_codes_label'))
                     ->columns(2)
                     ->columnSpanFull()
                     ->deleteAction(
@@ -142,50 +153,50 @@ class TrackingConsentPage extends AbstractPageSettings
                     )
                     ->schema([
                         Forms\Components\Select::make('position')
-                            ->label('Posizione')
+                            ->label(__('filament-tracking-consent::tracking-consent.position'))
                             ->options([
-                                'head' => 'HEAD',
-                                'body' => 'Inizio BODY',
-                                'footer' => 'Fine BODY',
+                                'head' => __('filament-tracking-consent::tracking-consent.positions.head'),
+                                'body' => __('filament-tracking-consent::tracking-consent.positions.body'),
+                                'footer' => __('filament-tracking-consent::tracking-consent.positions.footer'),
                             ])
                             ->default('body')
                             ->required(),
                         Forms\Components\Select::make('category')
-                            ->label('Categoria')
+                            ->label(__('filament-tracking-consent::tracking-consent.category'))
                             ->options([
                                 'analytics' => 'Analytics',
                                 'marketing' => 'Marketing',
-                                'necessary' => 'Necessari',
+                                'necessary' => __('filament-tracking-consent::tracking-consent.necessary'),
                                 'other' => 'Altro',
                             ])
                             ->default('analytics')
                             ->required(),
                         AceEditor::make('code')
-                            ->label('Codice')
+                            ->label(__('filament-tracking-consent::tracking-consent.code'))
                             ->columnSpanFull()
                             ->required(),
 
                         Repeater::make('cookies')
-                            ->label('Tabella dei cookies')
+                            ->label(__('filament-tracking-consent::tracking-consent.cookies_table'))
                             ->columns(2)
                             ->schema([
                                 Forms\Components\TextInput::make('name')
-                                    ->label('Nome')
+                                    ->label(__('filament-tracking-consent::tracking-consent.name'))
                                     ->required(),
                                 Forms\Components\TextInput::make('service')
-                                    ->label('Servizio')
+                                    ->label(__('filament-tracking-consent::tracking-consent.service'))
                                     ->required(),
                                 Forms\Components\TextInput::make('description')
-                                    ->label('Descrizione')
+                                    ->label(__('filament-tracking-consent::tracking-consent.description'))
                                     ->required(),
                                 Forms\Components\TextInput::make('expiration')
-                                    ->label('Scadenza')
+                                    ->label(__('filament-tracking-consent::tracking-consent.expiration'))
                                     ->required(),
                             ])
                             ->deleteAction(
                                 fn (Action $action) => $action->requiresConfirmation(),
                             )
-                            ->addActionLabel('Aggiungi cookie')
+                            ->addActionLabel(__('filament-tracking-consent::tracking-consent.add_cookie'))
                             ->collapsible()
                             ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
                             ->columnSpanFull(),
