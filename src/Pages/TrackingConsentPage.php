@@ -172,6 +172,7 @@ class TrackingConsentPage extends AbstractPageSettings
                             ->required(),
                         Forms\Components\Textarea::make('code')
                             ->label(__('filament-tracking-consent::tracking-consent.code'))
+                            ->rows(5)
                             ->columnSpanFull()
                             ->required(),
 
